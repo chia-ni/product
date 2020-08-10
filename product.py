@@ -1,12 +1,18 @@
+import os #operating system
+
 #讀取檔案
 product = []
-with open('product.csv', 'r' , encoding = 'utf-8') as f:
-	for line in f:
-		if '商品,價格' in line:
-			continue
-		name, price = line.strip().split(',') 
-		product.append([name, price])
-print(product)
+if os.path.isfile('product.csv'): #檢查檔案是否存在
+	print('找到此檔案!')
+	with open('product.csv', 'r' , encoding = 'utf-8') as f:
+		for line in f:
+			if '商品,價格' in line:
+				continue
+			name, price = line.strip().split(',') 
+			product.append([name, price])
+	print(product)
+else:
+	print('找不到此檔案喔...')
 
 #讓使用者輸入購買紀錄
 while True:
